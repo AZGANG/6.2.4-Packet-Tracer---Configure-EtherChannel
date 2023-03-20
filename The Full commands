@@ -1,0 +1,56 @@
+Configure EtherChannel....
+On S1 and S3, add ports F0/21 and F0/22 to Port Channel 1 with the channel-group 1 mode desirable command. The mode desirable option enables the switch to actively negotiate to form a PAgP link. Note: Interfaces must be shutdown before adding them to the channel group.
+
+switch 1 
+int range g0/1 - g0/2 
+shutdown 
+channel-group 1 mode desirable 
+no shutdown 
+
+switch 3
+int range f0/21 - f0/22
+shutdown
+channel-group 1 mode desirable 
+no shutdown 
+
+configure the channel to trunk 
+switch 1 
+int port-channel 1 
+switchport mode trunk 
+
+do show etherchannel summary 
+
+
+Configure an 802.3ad LACP EtherChannel
+switch 1 
+int range g0/1 - 2
+shutdown 
+channel-group 2 mode active 
+no shutdown 
+int port-channel 2 
+switchport mode trunk 
+
+switch 2 
+int range g0/1 - 2
+shutdown 
+channel-group 2 mode active 
+no shutdown 
+int port channel 2 
+switchport mode trunk 
+exit
+
+Configure a Redundant EtherChannel Link
+switch 2 
+int range f0/23 - 24 
+shutdown
+channel-group 3 mode passive 
+no shutdown 
+int port-channel 3 
+switchport mode trunk 
+
+switch 3 
+int range f0/23 - 24 
+shutdown 
+channel-group 3 mode active 
+Port Channel 2 is not operative because Spanning Tree Protocol placed some ports into blocking mode. Unfortunately, those ports were the Gigabit ports
+"spanning-tree vlan 1 root active" to fix that 
