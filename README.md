@@ -16,3 +16,4 @@ Three switches have just been installed. There are redundant uplinks between the
 
 Before beginning the configuration, review the EtherChannel Configuration Guidelines and Restrictions listed at the end of this activity.
 ![image](https://user-images.githubusercontent.com/128199477/226242857-ba9e0b42-09d3-442c-9953-77f76ce712ff.png)
+![image](https://user-images.githubusercontent.com/128199477/226246408-956bd8a9-eae7-458b-b285-b7dfa542580b.png)
